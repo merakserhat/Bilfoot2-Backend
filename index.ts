@@ -52,7 +52,7 @@ mongoose
   .connect(process.env.MONGODB_URI || "error")
   .then((result) => {
     // console.log(result);
-    app.listen(process.env.PORT || 8080);
+    app.listen(process.env.PORT || 3001);
 
     console.log("server is active");
   })
