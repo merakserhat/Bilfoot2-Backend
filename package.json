@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "stnart": "node dist/index.js",
+    "start": "nodemon index.ts",
     "dev": "nodemon index.ts",
     "build": "tsc -p"
   },
