@@ -25,7 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // var serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS!);
-
 const fire: ServiceAccount = {
   projectId: process.env.FIRABASE_PROJECT_ID,
   privateKey: process.env.FIREBASE_PRIVATE_KEY,
@@ -53,7 +52,7 @@ mongoose
   .connect(process.env.MONGODB_URI || "error")
   .then((result) => {
     // console.log(result);
-    app.listen(8080);
+    app.listen(process.env.PORT || 8080);
 
     console.log("server is active");
   })
