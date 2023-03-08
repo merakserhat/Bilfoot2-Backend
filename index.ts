@@ -12,13 +12,10 @@ import playerRoute from "./routes/player_r";
 import teamRoute from "./routes/team_r";
 import adminRoute from "./routes/admin_r";
 import matchRoute from "./routes/match_r";
-import { getApp, initializeApp } from "firebase-admin/app";
+import { getApp, initializeApp, ServiceAccount } from "firebase-admin/app";
 import admin from "firebase-admin";
 
 require("dotenv").config();
-
-//run this before npm start
-//export GOOGLE_APPLICATION_CREDENTIALS="/Users/serhatmerak/Documents/GitHub/BilFoot2/BilFoot_backend/firebase/serviceAccountKey.json"
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -27,10 +24,16 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS!);
+// var serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS!);
+
+const fire: ServiceAccount = {
+  projectId: process.env.FIRABASE_PROJECT_ID,
+  privateKey: process.env.FIREBASE_PRIVATE_KEY,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+};
 
 initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(fire),
 });
 app.get("/test", (req, res, next) => res.json({ message: "annen" }));
 
